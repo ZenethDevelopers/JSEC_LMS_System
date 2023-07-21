@@ -31,7 +31,7 @@ class Faculty_details(models.Model):
     user_name = models.CharField(max_length=200, unique=True)
     role = models.ForeignKey(Users, on_delete=models.CASCADE)
     image = models.ImageField(
-        upload_to='photo/%Y/%m/%d', default='images/Screenshot_3.png')
+        upload_to='photo/%Y/%m/%d', default='images/user.jpg')
     id_number = models.IntegerField()
     name = models.CharField(max_length=200)
     mail = models.CharField(max_length=200, unique=True)
@@ -78,7 +78,7 @@ class Test_evaluation(models.Model):
 class Details(models.Model):
     faculty_id = models.IntegerField()
     image = models.ImageField(
-        upload_to='photo/%Y/%m/%d', default='images/user_image.png')
+        upload_to='photo/%Y/%m/%d', default='images/user.jpg')
     name = models.CharField(max_length=200)
     date = models.DateField(default=timezone.now)
     designation = models.CharField(max_length=200)
@@ -124,7 +124,7 @@ class Student(models.Model):
     id = models.IntegerField(primary_key=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_pic = models.ImageField(
-        upload_to='profile_pic/Student/', null=True, blank=True)
+        upload_to='images/std.webp', null=True, blank=True)
     address = models.CharField(max_length=40)
     mail_id = models.CharField(max_length=40,unique=True) 
     parent_mail_id = models.CharField(max_length=40, unique=True)
@@ -149,8 +149,8 @@ class Student(models.Model):
 class Teacher(models.Model):
     id = models.IntegerField(primary_key=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_pic = models.ImageField(
-        upload_to='profile_pic/Teacher/', null=True, blank=True)
+    profile_pic = models.ImageField( upload_to="Teacher_images/",
+        default='images/teacher.webp', null=True, blank=True)
     address = models.CharField(max_length=40)
     mobile = models.CharField(max_length=20, null=False)
     role = models.CharField(max_length=20, null=False)
@@ -211,7 +211,7 @@ class blog(models.Model):
     content = models.CharField(
         max_length=2000, default="Author not provied any description")
     blog_profile_img = models.CharField(
-        max_length=2000, default="https://www.equalityhumanrights.com/sites/default/files/styles/listing_image/public/default_images/blog-teaser-default-full_5.jpg?itok=YOsTg-7X")
+        max_length=2000, default="https://99designs-blog.imgix.net/blog/wp-content/uploads/2018/12/Gradient_builder_2.jpg?auto=format&q=60&w=1815&h=1200&fit=crop&crop=faces")
     blog_type = models.CharField(
         max_length=2000, default="Blog")
     categories = models.CharField(max_length=200)
@@ -227,7 +227,7 @@ class Draft_blog(models.Model):
     content = models.CharField(
         max_length=2000, default="Author not provied any description")
     blog_profile_img = models.CharField(
-        max_length=2000, default="https://www.equalityhumanrights.com/sites/default/files/styles/listing_image/public/default_images/blog-teaser-default-full_5.jpg?itok=YOsTg-7X")
+        max_length=2000, default="https://i.pinimg.com/736x/37/ef/3c/37ef3c60c92222f35f37d5f9e4eacd69.jpg")
     blog_type = models.CharField(
         max_length=2000, default="Blog")
     categories = models.CharField(max_length=200)
@@ -244,7 +244,7 @@ class Draft_blog(models.Model):
 class Gallery(models.Model):
     G_id = models.IntegerField(primary_key=True)
     image = models.ImageField(
-        upload_to='Gallery/%Y/%m/%d', default='images/user_image.png')
+        upload_to='Gallery/%Y/%m/%d', default='images/bgwebp.webp')
     categories = models.CharField(max_length=200)
     date = models.DateField(default=timezone.now)
 
@@ -403,7 +403,7 @@ class logo(models.Model):
     L_id = models.IntegerField(primary_key=True)
     Reson = models.CharField(max_length=200,default='None...!')
     image = models.ImageField(
-        upload_to='logo', default='images/user_image.png')
+        upload_to='logo', default='images/bgwebp.webp')
     last_updated_date = models.DateField(default=timezone.now)
 
     class Meta:

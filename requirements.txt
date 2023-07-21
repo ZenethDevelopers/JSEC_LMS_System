@@ -12,6 +12,7 @@ pydub
 langdetect
 fpdf
 django-widget-tweaks
+gtts
 pdf2docx
 pytesseract
 docx 
