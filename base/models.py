@@ -559,3 +559,9 @@ class BotControl(models.Model):
     usr_id = models.IntegerField()
     toggle = models.IntegerField(blank=True)
     
+class EmailSettings(models.Model):
+    id = models.IntegerField(primary_key=True)
+    sender_email = models.EmailField(max_length=100)
+    password = models.CharField(max_length=100)
+    date = models.DateTimeField(auto_now_add=True)
+    
