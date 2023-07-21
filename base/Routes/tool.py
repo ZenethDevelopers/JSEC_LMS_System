@@ -543,10 +543,25 @@ conversation = {
     </ul>
     '''],
     "who are the LMS developers": ['''<ul>
-    <li><img style="width:40px;border-radius:80px;height:40px" src="" alt="pic"><a href="https://github.com/NagiPragalathan">Nagi Pragalathan</a></li>
-    <li><img src="https://github.com/glorysherin/JEC/blob/main/kokila.jpeg" alt="pic"><a href="https://github.com/jkokilaCSE">Kokila</a></li>
-    <li><img src="https://github.com/glorysherin/JEC/blob/main/Glory.jpeg" alt="pic"><a href="https://github.com/glorysherin">Glory Sherin</a></li>
+    <li><img style="width:40px;border-radius:80px;height:40px" src="https://github.com/glorysherin/JEC/blob/main/nagi.jpeg?raw=true" alt="pic"><a href="https://github.com/NagiPragalathan">Nagi Pragalathan</a></li>
+    <li><img src="https://github.com/glorysherin/JEC/blob/main/kokila.jpeg?raw=true" alt="pic"><a href="https://github.com/jkokilaCSE">Kokila</a></li>
+    <li><img src="https://github.com/glorysherin/JEC/blob/main/Glory.jpeg?raw=true" alt="pic"><a href="https://github.com/glorysherin">Glory Sherin</a></li>
     <li><img src="" alt="pic"><a href="https://github.com/MohanKumarMurugan">Mohan Kumar</a></li>
+    </ul>
+    '''],
+    "lms": ['''<ul>
+    <li><img style="width:40px;border-radius:80px;height:40px" src="https://github.com/glorysherin/JEC/blob/main/nagi.jpeg?raw=true" alt="pic"><a href="https://github.com/NagiPragalathan">Nagi Pragalathan</a></li>
+    <li><img src="https://github.com/glorysherin/JEC/blob/main/kokila.jpeg?raw=true" alt="pic"><a href="https://github.com/jkokilaCSE">Kokila</a></li>
+    <li><img src="https://github.com/glorysherin/JEC/blob/main/Glory.jpeg?raw=true" alt="pic"><a href="https://github.com/glorysherin">Glory Sherin</a></li>
+    <li><img src="" alt="pic"><a href="https://github.com/MohanKumarMurugan">Mohan Kumar</a></li>
+    </ul>
+    '''],
+    "lms": ['''<ul>
+    <li><img style="width:40px;border-radius:80px;height:40px;margin-bottom:8px;margin-left:-60px" src="https://github.com/glorysherin/JEC/blob/main/nagi.jpeg?raw=true" alt="pic"><a href="https://github.com/NagiPragalathan">Nagi Pragalathan N</a></li>
+    <li><img style="width:40px;border-radius:80px;height:40px;margin-bottom:8px;margin-left:-100px" src="https://github.com/glorysherin/JEC/blob/main/glorysherin.jpeg?raw=true" alt="pic"><a href="https://github.com/glorysherin">Glory Sherin s</a></li>
+    <li><img style="width:40px;border-radius:80px;height:40px;margin-bottom:8px;margin-left:-150px" src="https://github.com/glorysherin/JEC/blob/main/kokila.jpeg?raw=true" alt="pic"><a href="https://github.com/jkokilaCSE">Kokila j</a></li>
+    <li><img style="width:40px;border-radius:80px;height:40px;margin-bottom:8px;margin-left:-96px" src="https://github.com/glorysherin/JEC/blob/main/mohan.jpeg?raw=true" alt="pic"><a href="https://github.com/MohanKumarMurugan">Mohan Kumar</a></li>
+    
     </ul>
     '''],
     "Tell me about yourself.": ["I'm an AI-powered chatbot designed to provide assistance and engage in friendly conversations. How can I help you today?"],
