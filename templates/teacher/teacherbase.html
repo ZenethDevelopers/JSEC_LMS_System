@@ -2275,7 +2275,11 @@
         <div class="row gx-4">
           <div class="col-auto">
             <div class="avatar avatar-xl position-relative">
+              {% if stusr.image.url %}
               <img src=" {{ stusr.image.url }} " alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+              {% else %}
+              <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freepik.com%2Ffree-photos-vectors%2Funknown-profile&psig=AOvVaw3BEosLObllxYBZppLuJOkR&ust=1690007092307000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCMjcvJWVn4ADFQAAAAAdAAAAABAE" alt="profile_image" class="w-100 border-radius-lg shadow-sm">
+              {% endif %}
             </div>
           </div>
           <div class="col-auto my-auto">
