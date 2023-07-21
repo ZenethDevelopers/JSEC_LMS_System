@@ -1,7 +1,7 @@
 import requests
 from django.shortcuts import render
 from django.shortcuts import render, redirect, get_object_or_404
-from ..models import Users,Department,Internal_test_mark,Sec_Daily_test_mark,Upload_Assignment,ClassRooms,Daily_test_mark, YouTubeLink,  Assignment, Student, Faculty_details, Internal_test_mark, Course, Sec_Daily_test_mark, Room, ClassRooms, class_enrolled, NoteCourse, Attendees, Student, Teacher, EbookForClass, daily_test
+from ..models import Users,Department,Internal_test_mark,EmailSettings,Sec_Daily_test_mark,Upload_Assignment,ClassRooms,Daily_test_mark, YouTubeLink,  Assignment, Student, Faculty_details, Internal_test_mark, Course, Sec_Daily_test_mark, Room, ClassRooms, class_enrolled, NoteCourse, Attendees, Student, Teacher, EbookForClass, daily_test
 from django.contrib.auth.models import User
 from .Tool.Tools import get_user_mail, get_user_name, get_user_role, get_user_obj, get_user_name_byid
 import datetime
@@ -565,8 +565,13 @@ def update_attendes(request):
                 except:
                     prev_month = 0
                 obje = Student.objects.get(role_no=splited[3])
-                sender_email = settings.EMAIL_HOST_USER
-                password = settings.EMAIL_HOST_PASSWORD
+                
+                email_settings = EmailSettings.objects.first()
+
+                sender_email = email_settings.sender_email
+                password = email_settings.password
+                
+                
                 message = MIMEMultipart("alternative")
                 context = ssl.create_default_context()
                 server = smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context)

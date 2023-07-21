@@ -26,6 +26,7 @@ from .Routes.assignment import *
 from .Routes.Upload_Assignment import *
 from .Routes.compiler import *
 from .Routes.social_link import *
+from .Routes.email import *
 
 # Initilizes........................
 
@@ -615,11 +616,14 @@ social = [
     path('edit_social_media/<int:id>', edit_social_media, name='edit_social_media'),
     path('staff_edit_social_media', staff_edit_social_media, name='staff_edit_social_media'),
     path('classroom/join/', class_blank, name='class_blank'),
-    
 ]
 
-urlpatterns.extend(Make_Join([compile, social, upload_assignments, assignments_, links_management, parent,department,tools, chatbot, NoCodeMaker, common_tool, note, gallery_, blog_url, common, event,
-                   admin, chatroom, classroom, videochat, studet, teacher, exam, dynamicFunctionality, alternative_url, Staff_tool,error]))
+e_mail = [
+    path('edit_email_settings', edit_email_settings, name='edit_email_settings'),
+    path('show_email_settings', show_email_settings, name='show_email_settings'),
+]
 
+urlpatterns.extend(Make_Join([e_mail, compile, social, upload_assignments, assignments_, links_management, parent,department,tools, chatbot, NoCodeMaker, common_tool, note, gallery_, blog_url, common, event,
+                   admin, chatroom, classroom, videochat, studet, teacher, exam, dynamicFunctionality, alternative_url, Staff_tool,error]))
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
