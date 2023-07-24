@@ -1,4 +1,4 @@
-import pywhatkit as kit
+# import pywhatkit as kit
 from django.conf import settings
 from django.shortcuts import render, redirect
 from googletrans import Translator, LANGUAGES
@@ -397,24 +397,24 @@ def gpa_calculator(request):
 
 
 def handwriting_converter(request):
-    if request.method == 'POST':
-        # Get input text from form
-        input_text = request.POST.get('input_text')
+    # if request.method == 'POST':
+    #     # Get input text from form
+    #     input_text = request.POST.get('input_text')
 
-        # Create a filename for the image
-        filename = 'handwriting.png'
+    #     # Create a filename for the image
+    #     filename = 'handwriting.png'
 
-        # Generate image using Pywhatkit
-        kit.text_to_handwriting(input_text, os.path.join(
-            settings.MEDIA_ROOT, filename))
+    #     # Generate image using Pywhatkit
+    #     kit.text_to_handwriting(input_text, os.path.join(
+    #         settings.MEDIA_ROOT, filename))
 
-        # Open image file
-        with open(os.path.join(settings.MEDIA_ROOT, filename), 'rb') as f:
-            response = HttpResponse(f.read(), content_type="image/png")
-            response['Content-Disposition'] = 'attachment; filename=' + filename
-            return response
-    else:
-        return render(request, 'tools/handwriting.html', student_detials(request, 'Text to Hand Written'))
+    #     # Open image file
+    #     with open(os.path.join(settings.MEDIA_ROOT, filename), 'rb') as f:
+    #         response = HttpResponse(f.read(), content_type="image/png")
+    #         response['Content-Disposition'] = 'attachment; filename=' + filename
+    #         return response
+    # else:
+    return render(request, 'tools/handwriting.html', student_detials(request, 'Text to Hand Written'))
 
 
 def keyword_to_image(request):
