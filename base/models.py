@@ -124,7 +124,7 @@ class Student(models.Model):
     id = models.IntegerField(primary_key=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_pic = models.ImageField(
-        upload_to='images/std.webp', null=True, blank=True)
+        upload_to='Student_profiles/', default='images/std.webp', null=True, blank=True)
     address = models.CharField(max_length=40)
     mail_id = models.CharField(max_length=40,unique=True) 
     parent_mail_id = models.CharField(max_length=40, unique=True)
