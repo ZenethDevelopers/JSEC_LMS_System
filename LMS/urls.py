@@ -6,6 +6,9 @@ handler400, handler403, handler404, handler500
 from django.urls import re_path
 from django.views.static import serve
 from LMS import settings
+from django.conf import settings # new
+from  django.conf.urls.static import static #new
+
 
 app_name = 'base' # add this line to define your app_name
 
@@ -25,3 +28,7 @@ urlpatterns += (
     re_path(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
     re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
 )
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_URL)
