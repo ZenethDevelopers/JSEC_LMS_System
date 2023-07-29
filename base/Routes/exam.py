@@ -72,10 +72,11 @@ def adminclick_view(request):
 def admin_dashboard_view(request):
     dict_ = {
         'total_student': SMODEL.Student.objects.all().count(),
-        'total_teacher': TMODEL.Teacher.objects.all().filter(status=True).count(),
-        'total_course': models.Course.objects.all().count(),
+        'total_teacher': TMODEL.Teacher.objects.all().filter(status=True).exclude(role='admin').count(),
+        'total_course': Department.objects.all().count(),
         'total_question': models.Question.objects.all().count(),
     }
+    
     return render(request, 'exam/admin_dashboard.html', staff_detials(request,'Admin Dashboard',dict_))
 
 
@@ -273,7 +274,7 @@ def admin_add_course_view(request):
 
 @login_required(login_url='adminlogin')
 def admin_view_course_view(request):
-    courses = models.Course.objects.all()
+    courses = Department.objects.all()
     return render(request, 'exam/admin_view_course.html', staff_detials(request,'Course Details',{'courses': courses}))
 
 
