@@ -32,3 +32,4 @@ pdfkit
 docx2pdf
 nltk
 django-import-export
+whitenoise
