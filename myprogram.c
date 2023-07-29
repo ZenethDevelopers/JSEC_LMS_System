@@ -1,65 +1,66 @@
-#include <stdio.h>
-#include <stdlib.h>
+from django.shortcuts import render
+from subprocess import Popen, PIPE
 
-// Define the structure for a linked list node
-struct Node {
-    int data;
-    struct Node* next;
-};
+def compiler_view(request):
+    if request.method == 'POST':
+        code = request.POST.get('code'
+        language = request.POST.get('language', '')
+        input_value = request.POST.get('input_value', '')
+        result = compile_and_execute(code, language, input_value)
 
-// Function to create a new node
-struct Node* createNode(int data) {
-    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
-    if (newNode) {
-        newNode->data = data;
-        newNode->next = NULL;
-    }
-    return newNode;
-}
+        return render(request, 'compiler/compiler.html', {'code': code, 'result': result,'language':language})
+    else:
+        return render(request, 'compiler/compiler.html')
 
-// Function to insert a new node at the beginning of the linked list
-struct Node* insertAtBeginning(struct Node* head, int data) {
-    struct Node* newNode = createNode(data);
-    if (newNode) {
-        newNode->next = head;
-        head = newNode;
-    }
-    return head;
-}
+def compile_and_execute(code, language, input_value):
+    if language == 'python':
+        process = Popen(['python3', '-c', code], stdin=PIPE, stdout=PIPE, stderr=PIPE)
+    elif language == 'java':
+        with open('HelloWorld.java', 'w') as c_file:
+            c_file.write(code)
+        process = Popen(['javac', 'HelloWorld.java'], stdin=PIPE, stdout=PIPE, stderr=PIPE)
+        process.communicate()
+        process = Popen(['java', 'Node'], stdin=PIPE, stdout=PIPE, stderr=PIPE)
+    elif language == 'c':
+        with open('myprogram.c', 'w') as c_file:
+            c_file.write(code)
+        process = Popen(['gcc', 'myprogram.c', '-o', 'myprogram'], stdout=PIPE, stderr=PIPE)
+        stdout, stderr = process.communicate()  # Capture the output of gcc
+        if stderr:
+            result = stderr.decode('utf-8')
+        else:
+            result = stdout.decode('utf-8')
+        print("result : ", result)
+        
+        if process.returncode == 0:
+            # Compilation successful, now run the compiled program
+            process = Popen(['./myprogram'], stdin=PIPE, stdout=PIPE, stderr=PIPE)
+            stdout, stderr = process.communicate(input=input_value.encode('utf-8'))
+            if stderr:
+                result = stderr.decode('utf-8')
+            else:
+                result = stdout.decode('utf-8')
+            print("result : ", result)
+            return result
+        else:
+            # Compilation failed, return the error message from gcc
+            return result
+    elif language in ['html', 'tailwind', 'bootstrap']:
+        return f"<frame>{code}</frame>"
+    elif language == 'js':
+        try:
+            compiled_output = eval(code)
+            return compiled_output
+        except Exception as e:
+            return f"Error: {str(e)}"
+    else:
+        return 'Unsupported language'
 
-// Function to display the elements of the linked list
-void displayList(struct Node* head) {
-    printf("Linked List: ");
-    while (head) {
-        printf("%d -> ", head->data);
-        head = head->next;
-    }
-    printf("NULL\n");
-}
-
-// Function to free the memory occupied by the linked list
-void freeLinkedList(struct Node* head) {
-    while (head) {
-        struct Node* temp = head;
-        head = head->next;
-        free(temp);
-    }
-}
-
-int main() {
-    struct Node* head = NULL;
-
-    // Insert nodes at the beginning
-    head = insertAtBeginning(head, 3);
-    head = insertAtBeginning(head, 5);
-    head = insertAtBeginning(head, 7);
-    head = insertAtBeginning(head, 9);
-
-    // Display the linked list
-    displayList(head);
-
-    // Free the memory occupied by the linked list
-    freeLinkedList(head);
-
-    return 0;
-}
+    stdout, stderr = process.communicate(input=input_value.encode('utf-8'))
+    print(stdout,stderr)
+    if stderr:
+        result = stderr.decode('utf-8')
+    else:
+        result = stdout.decode('utf-8')
+    print("result : ",result)
+    return result

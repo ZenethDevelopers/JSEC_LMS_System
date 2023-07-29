@@ -69,54 +69,65 @@ a:hover {
     </style>
 </head>
 <body>
-<div style="margin-bottom: 7%;margin-top: 10px;">
-    <center><input type="text" id="search" placeholder="Search..." oninput="filterTable()"></center>
+  <div style="margin-bottom: 7%; margin-top: 10px;">
+      <center>
+          <input type="text" id="search" placeholder="Search..." oninput="filterTable()">
+      </center>
 
-    <div class="card-container" >
-        <h2>{{ dept }}</h2>
-        <div class="table-container" style="margin-bottom: 10%;">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Department</th>
-                        <th>Role No</th> 
-                        <th>Mobile</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for student in students %}
-                    {% if student.department == dept %}
-                    <tr>
-                        <td>{{ student.get_name }}</td>
-                        <td>{{ student.department }}</td>
-                        {% if data == 'std' %}
-                        <td>{{ student.role_no }}</td>
-                        {% else %}
-                        <td>{{ student.role }}</td>
-                        {% endif %}
-                        <td>{{ student.mobile }}</td>
-                        <td>
-                          {% if data == 'std' %}
-                            <a href="students/{{ student.id}}">View</a>
-                            <a href="student/{{ student.id }}/edit">Edit</a>
-                            <a href="students_delete/{{ student.id }}/delete">Delete</a>
-                          {% else %}
-                            <a href=" {% url 'teacher_profile' staff_id=student.id %}">View</a>
-                            <a href=" {% url 'teacher_edit' teacher_id=student.id %}">Edit</a>
-                            <a href="{% url 'teacher_delete' teacher_id=student.id %}">Delete</a>
-                          {% endif %}
-                        </td>
-                    </tr>
-                    {% endif %}
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+      <div class="card-container">
+          <h2>{{ dept }}</h2>
+          <div class="table-container" style="margin-bottom: 10%;">
+              <table>
+                  <thead>
+                      <tr>
+                          <th>Name</th>
+                          <th>Department</th>
+                          <th>Role No</th>
+                          <th>Mobile</th>
+                          <th>Actions</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      {% if students %}
+                          {% for student in students %}
+                              {% if student.department == dept %}
+                                  <tr>
+                                      <td>{{ student.get_name }}</td>
+                                      <td>{{ student.department }}</td>
+                                      {% if data == 'std' %}
+                                          <td>{{ student.role_no }}</td>
+                                      {% else %}
+                                          <td>{{ student.role }}</td>
+                                      {% endif %}
+                                      <td>{{ student.mobile }}</td>
+                                      <td>
+                                          {% if data == 'std' %}
+                                              <a href="students/{{ student.id }}">View</a>
+                                              <a href="student/{{ student.id }}/edit">Edit</a>
+                                              <a href="students_delete/{{ student.id }}/delete">Delete</a>
+                                          {% else %}
+                                              <a href="{% url 'teacher_profile' staff_id=student.id %}">View</a>
+                                              <a href="{% url 'teacher_edit' teacher_id=student.id %}">Edit</a>
+                                              <a href="{% url 'teacher_delete' teacher_id=student.id %}">Delete</a>
+                                          {% endif %}
+                                      </td>
+                                  </tr>
+                              {% endif %}
+                          {% endfor %}
+                      {% else %}
+                          <tr>
+                              <td colspan="5">
+                                  <h2>No students have been enrolled in the {{ dept }} department yet.</h2>
+                              </td>
+                          </tr>
+                      {% endif %}
+                  </tbody>
+              </table>
+          </div>
+      </div>
+  </div>
 </body>
+
 
 <script>
     function filterTable() {

@@ -235,7 +235,7 @@ const textarea = new CustomTextarea(document.querySelector('.custom-textarea'));
         const inputValue = document.querySelector('input[name="input_value"]');
 
         const formData = new FormData();
-        formData.append('code', codeInput.value);
+        formData.append('code', codeInput.text);
         formData.append('language', languageSelect.value);
         formData.append('input_value', inputValue.value);
 
