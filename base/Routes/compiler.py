@@ -14,12 +14,16 @@ def compiler_view(request):
 
 def compile_and_execute(code, language, input_value):
     if language == 'python':
-        process = Popen(['python', '-c', code], stdin=PIPE, stdout=PIPE, stderr=PIPE)
+        process = Popen(['python3', '-c', code], stdin=PIPE, stdout=PIPE, stderr=PIPE)
     elif language == 'java':
-        process = Popen(['java', '-'], stdin=PIPE, stdout=PIPE, stderr=PIPE)
+        process = Popen(['javac', 'HelloWorld.java'], stdin=PIPE, stdout=PIPE, stderr=PIPE)
+        process.communicate()
+        process = Popen(['java', 'HelloWorld'], stdin=PIPE, stdout=PIPE, stderr=PIPE)
     elif language == 'c':
-        process = Popen(['gcc', '-xc', '-o', 'myprogram', '-'], stdin=PIPE, stdout=PIPE, stderr=PIPE)
-    elif language == 'html' or language == 'tailwind' or language == 'bootstrap':
+        with open('myprogram.c', 'w') as c_file:
+            c_file.write(code)
+        process = Popen(['gcc', 'myprogram.c', '-o', 'myprogram'], stdin=PIPE, stdout=PIPE, stderr=PIPE)
+    elif language in ['html', 'tailwind', 'bootstrap']:
         return f"<frame>{code}</frame>"
     elif language == 'js':
         try:
