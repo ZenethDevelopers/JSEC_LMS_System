@@ -2439,7 +2439,7 @@
                     <h6 class="mb-0 text-sm subject-code">{{ i.0.subject_code }}</h6>
                     <p class="mb-0 text-xs subject-name">{{ i.0.class_name }}</p>
                   </div>
-                  <a class="btn btn-link pe-3 ps-0 mb-0 ms-auto" onclick="join_room('{{ i.0.subject_code }}','{{ i.0.class_name }}')">GroupChat</a>
+                  <a class="btn btn-link pe-3 ps-0 mb-0 ms-auto" onclick="join_room('{{ detail.name }}','{{ i.0.class_name }}')">GroupChat</a>
                 </li>
                 {% endfor %}
               </ul>

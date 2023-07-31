@@ -48,10 +48,19 @@
                 </select>
             </div>
             <div class="mb-3">
-                <label for="email" class="text-sm text-navy-700 dark:text-white font-bold">Semester:</label>
-                <input  type="text" name="semester" id="semester" value="{{ note.semester }}" required placeholder="Semester"
+                <label for="semester" class="text-sm text-navy-700 dark:text-white font-bold">Semester:</label>
+                <select type="text" name="semester" id="semester" required placeholder="Semester"
                     class="mt-2 flex h-12 w-full items-center justify-center rounded-xl border bg-white/0 p-3 text-sm outline-none border-gray-200">
-            </div>
+                    <option value="1" {% if values == "1" %}selected{% endif %}>1</option>
+                    <option value="2" {% if values == "2" %}selected{% endif %}>2</option>
+                    <option value="3" {% if values == "3" %}selected{% endif %}>3</option>
+                    <option value="4" {% if values == "4" %}selected{% endif %}>4</option>
+                    <option value="5" {% if values == "5" %}selected{% endif %}>5</option>
+                    <option value="6" {% if values == "6" %}selected{% endif %}>6</option>
+                    <option value="7" {% if values == "7" %}selected{% endif %}>7</option>
+                    <option value="8" {% if values == "8" %}selected{% endif %}>8</option>
+                </select>
+            </div>            
             <div class="mb-3">
                 <label for="email" class="text-sm text-navy-700 dark:text-white font-bold">Notes Title:</label>
                 <input type="text" name="notes_title" id="notes_title" value="{{ note.notes_title }}" required placeholder="Title"
