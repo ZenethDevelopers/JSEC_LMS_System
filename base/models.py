@@ -125,10 +125,10 @@ class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_pic = models.ImageField(
         upload_to='Student_profiles/', default='images/std.webp', null=True, blank=True)
-    address = models.CharField(max_length=40)
+    address = models.CharField(max_length=50)
     mail_id = models.CharField(max_length=40,unique=True) 
     parent_mail_id = models.CharField(max_length=40, unique=True)
-    mobile = models.CharField(max_length=20, null=False)
+    mobile = models.CharField(max_length=10, null=False)
     joinned_year = models.DateField(default=timezone.now)
     role_no = models.IntegerField(unique=True)
     department = models.CharField(max_length=40)
@@ -151,13 +151,13 @@ class Teacher(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_pic = models.ImageField( upload_to="Teacher_images/",
         default='images/teacher.webp', null=True, blank=True)
-    address = models.CharField(max_length=40)
-    mobile = models.CharField(max_length=20, null=False)
+    address = models.CharField(max_length=100)
+    mobile = models.CharField(max_length=10, null=False)
     role = models.CharField(max_length=20, null=False)
     status = models.BooleanField(default=False)
-    department = models.CharField(max_length=40)
+    department = models.CharField(max_length=50)
     salary = models.PositiveIntegerField(null=True)
-    Annauni_num = models.CharField(max_length=40, default="0000000")
+    Annauni_num = models.CharField(max_length=15, default="0000000")
 
     @property
     def get_name(self):
@@ -414,7 +414,7 @@ class FooterEditPage(models.Model):
     id = models.IntegerField(primary_key=True)
     InstituteName = models.CharField(max_length=200)
     Address = models.CharField(max_length=200)
-    PhoneNumber = models.CharField(max_length=200)
+    PhoneNumber = models.CharField(max_length=10)
     EXN = models.CharField(max_length=200)
     mail = models.CharField(max_length=200)
     last_updated_date = models.DateField(default=timezone.now)
