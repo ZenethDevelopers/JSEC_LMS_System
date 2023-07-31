@@ -1,4 +1,4 @@
-# import pywhatkit as kit
+import pywhatkit as kit
 from django.conf import settings
 from django.shortcuts import render
 from googletrans import Translator, LANGUAGES
@@ -186,6 +186,7 @@ def Common_convert_pdf_to_docx(request):
 
 def Common_convert_pdf_to_excel(request):
     if request.method == 'POST' and request.FILES['pdf_file']:
+        
         # get the uploaded PDF file
         pdf_file = request.FILES['pdf_file']
         # convert the PDF file into a list of lists
@@ -205,33 +206,20 @@ def Common_convert_pdf_to_excel(request):
 
 
 def Common_convert_excel_to_pdf(request):
-    if request.method == 'POST' and request.FILES.get('excel_file'):
-        excel_file = request.FILES['excel_file']
-        wb = load_workbook(excel_file, read_only=True)
-        ws = wb.active
-        pdf_buffer = io.BytesIO()
-        c = canvas.Canvas(pdf_buffer, pagesize=letter)
-        c.setFont('Helvetica', 12)
-        x, y = 1 * inch, 10.5 * inch
-        for row in ws.iter_rows():
-            for cell in row:
-                cell_value = cell.value
-                if cell_value is None:
-                    cell_value = ''
-                else:
-                    cell_value = str(cell_value)
-                c.drawString(x, y, cell_value)
-                x += 1 * inch
-            x = 1 * inch
-            y -= 0.5 * inch
-        c.save()
-        pdf_buffer.seek(0)
-        response = HttpResponse(pdf_buffer, content_type='application/pdf')
-        response['Content-Disposition'] = 'attachment; filename="output.pdf"'
+        if request.method == 'POST' and request.FILES.get('pdf_file'):
+            pdf_file = request.FILES['pdf_file']
+            pdf_reader = PdfFileReader(pdf_file)
+            pdf_text = ""
 
-        return response
+            for page_num in range(pdf_reader.numPages):
+                page = pdf_reader.getPage(page_num)
+                pdf_text += page.extractText()
 
-    return render(request, 'Common_Page_Tools/convert_excel_to_pdf.html')
+            response = HttpResponse(pdf_text, content_type='text/plain')
+            response['Content-Disposition'] = 'attachment; filename="output.txt"'
+            return response
+
+        return render(request, 'Common_Page_Tools/convert_excel_to_pdf.html')
 
 
 def Common_convert_images_to_pdf(images):
@@ -403,24 +391,24 @@ def Common_gpa_calculator(request):
 
 
 def Common_handwriting_converter(request):
-    # if request.method == 'POST':
-    #     # Get input text from form
-    #     input_text = request.POST.get('input_text')
+    if request.method == 'POST':
+        # Get input text from form
+        input_text = request.POST.get('input_text')
 
-    #     # Create a filename for the image
-    #     filename = 'handwriting.png'
+        # Create a filename for the image
+        filename = 'handwriting.png'
 
-    #     # Generate image using Pywhatkit
-    #     kit.text_to_handwriting(input_text, os.path.join(
-    #         settings.MEDIA_ROOT, filename))
+        # Generate image using Pywhatkit
+        kit.text_to_handwriting(input_text, os.path.join(
+            settings.MEDIA_ROOT, filename))
 
-    #     # Open image file
-    #     with open(os.path.join(settings.MEDIA_ROOT, filename), 'rb') as f:
-    #         response = HttpResponse(f.read(), content_type="image/png")
-    #         response['Content-Disposition'] = 'attachment; filename=' + filename
-    #         return response
-    # else:
-    return render(request, 'Common_Page_Tools/handwriting.html')
+        # Open image file
+        with open(os.path.join(settings.MEDIA_ROOT, filename), 'rb') as f:
+            response = HttpResponse(f.read(), content_type="image/png")
+            response['Content-Disposition'] = 'attachment; filename=' + filename
+            return response
+    else:
+        return render(request, 'Common_Page_Tools/handwriting.html')
 
 
 def Common_keyword_to_image(request):
