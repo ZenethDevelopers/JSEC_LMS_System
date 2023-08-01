@@ -1,4 +1,3 @@
-import pywhatkit as kit
 from django.conf import settings
 from django.shortcuts import render
 from googletrans import Translator, LANGUAGES
@@ -393,23 +392,6 @@ def Common_gpa_calculator(request):
 
 
 def Common_handwriting_converter(request):
-    if request.method == 'POST':
-        # Get input text from form
-        input_text = request.POST.get('input_text')
-
-        # Create a filename for the image
-        filename = 'handwriting.png'
-
-        # Generate image using Pywhatkit
-        kit.text_to_handwriting(input_text, os.path.join(
-            settings.MEDIA_ROOT, filename))
-
-        # Open image file
-        with open(os.path.join(settings.MEDIA_ROOT, filename), 'rb') as f:
-            response = HttpResponse(f.read(), content_type="image/png")
-            response['Content-Disposition'] = 'attachment; filename=' + filename
-            return response
-    else:
         return render(request, 'Common_Page_Tools/handwriting.html')
 
 

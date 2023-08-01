@@ -1,9 +1,5 @@
 import gtts
 from googletrans import Translator
-try:
-    import pywhatkit as kit
-except:
-    print("pyWhatKit not import")
 import requests
 from bs4 import BeautifulSoup
 from bing_image_downloader import downloader
