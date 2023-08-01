@@ -169,7 +169,7 @@ body {
     <script>
         const codeInput = document.getElementById('code-input');
     const lineNumbers = document.querySelector('.line-numbers');
-    codeInput.value = "{{ code }}"
+    codeInput.value = "{{ code|safe }}"
     codeInput.addEventListener('input', updateLineNumbers);
 
     function updateLineNumbers() {
