@@ -926,7 +926,7 @@ JSEC-Class room  </title>
 </style>
 
              
-<button class="button-64" role="button" style="width: 50%;"><span class="text"><a href="{% url 'list_notes' class_id=detail.subject_code %}">Notes</a></span></button>
+<button class="button-64" role="button" style="width: 50%;"><span class="text"><a href="{% url 'list_notes' class_id=detail.subject_code %}">View Notes</a></span></button>
 
           </div>
         </div>
@@ -975,13 +975,13 @@ JSEC-Class room  </title>
 
               <li class="list-group-item border-0 ps-0 pb-0">
                 <strong class="text-dark text-sm">Social:</strong> &nbsp;
-                <a class="btn btn-facebook btn-simple mb-0 ps-1 pe-2 py-0" href=" https://jec.ac.in/ ">
+                <a class="btn btn-facebook btn-simple mb-0 ps-1 pe-2 py-0" href="https://www.facebook.com/jayasakthiengineering ">
                   <i class="fab fa-facebook fa-lg"></i>
                 </a>
-                <a class="btn btn-twitter btn-simple mb-0 ps-1 pe-2 py-0" href=" https://jec.ac.in/">
+                <a class="btn btn-twitter btn-simple mb-0 ps-1 pe-2 py-0" href=" https://twitter.com/SakthiecIn">
                   <i class="fab fa-twitter fa-lg"></i>
                 </a>
-                <a class="btn btn-instagram btn-simple mb-0 ps-1 pe-2 py-0" href="https://jec.ac.in/">
+                <a class="btn btn-instagram btn-simple mb-0 ps-1 pe-2 py-0" href="https://www.instagram.com/jayasakthi_engineering_clg/">
                   <i class="fab fa-instagram fa-lg"></i>
                 </a>
               </li>
@@ -1015,11 +1015,13 @@ JSEC-Class room  </title>
 <!-- component -->
 
 <div class="flex flex-col">
+  <h2 style="font-size: 30px;margin-left: 10px;">Assignment:</h2><br><br>
+  <div class="flex justify-end mt-4 mx-6">
+    <input style="width: 350px;"  type="text" id="searchInput" class="border border-gray-400 rounded py-2 px-3 mr-4 focus:outline-none" placeholder="Search by Uploaded by or Subject Code">
+  </div>
   <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
-    <h2 style="font-size: 30px;margin-left: 10px;">Assignment:</h2><br><br>
-    <div class="flex justify-end mt-4 mx-6">
-      <input type="text" id="searchInput" class="border border-gray-400 rounded py-2 px-3 mr-4 focus:outline-none" placeholder="Search by Uploaded by or Subject Code">
-    </div>
+    
+   
     <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
       <div class="overflow-hidden">
         <table class="min-w-full">
