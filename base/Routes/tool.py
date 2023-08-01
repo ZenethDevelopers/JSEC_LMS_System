@@ -1043,7 +1043,9 @@ conversation = {
 "No, we are superintelligent."],
 "thank you":["No mention","Welcome","It's my pleasure"],
 "thanks":["No mention","Welcome","It's my pleasure"],
-"thankyou":["No mention","Welcome","It's my pleasure"]}
+"thankyou":["No mention","Welcome","It's my pleasure"],
+"hi":["hello","hi","hey, What's up...!"],
+"hey":["hey, what's up","hey...!"]}
 
 # Define synonyms for common question words
 synonyms = {"what": ["what", "which", "where", "when", "how","who"],
