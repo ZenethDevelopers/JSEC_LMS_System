@@ -7,7 +7,7 @@ def compiler_view(request):
         language = request.POST.get('language', '')
         input_value = request.POST.get('input_value', '')
         result = compile_and_execute(code, language, input_value)
-
+        print(code)
         return render(request, 'compiler/compiler.html', {'code': code, 'result': result,'language':language})
     else:
         return render(request, 'compiler/compiler.html')
