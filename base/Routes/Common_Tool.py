@@ -25,6 +25,8 @@ from pdf2docx import Converter
 from docx import Document
 from docx.shared import Inches
 from .Tool.Code_scriping_Tool import get_image_url
+from PyPDF2 import PdfFileReader
+
 
 from django.shortcuts import render
 from .Tool.Code_scriping_Tool import get_stackoverflow_link,get_stackoverflow_link_1, get_example_code_gfg, get_answer_from_given_link
@@ -110,7 +112,7 @@ def Common_convert_text(request):
             response = HttpResponse(f.read(), content_type='audio/mpeg')
             response['Content-Disposition'] = 'attachment; filename="output.mp3"'
             return response
-    return render(request, 'Common_Page_Tools/text_to_audio.html')
+    return render(request, 'Common_Page_Tools/Text_to_audio.html')
 
 
 def Common_wikipedia_summary(request):

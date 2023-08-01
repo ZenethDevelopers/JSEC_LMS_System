@@ -274,7 +274,7 @@ def admin_add_course_view(request):
 
 @login_required(login_url='adminlogin')
 def admin_view_course_view(request):
-    courses = Department.objects.all()
+    courses = models.Course.objects.all()
     return render(request, 'exam/admin_view_course.html', staff_detials(request,'Course Details',{'courses': courses}))
 
 
