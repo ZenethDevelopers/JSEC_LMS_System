@@ -10,7 +10,7 @@
 <div class="flex justify-center" style="margin-top: 20px;margin-right: 30px;margin-left: 30px;">
   <div>
   <div class="bg-white shadow-md rounded-md p-4" style="margin-bottom: 100px;">
-    <h1 class="text-2xl font-bold">Datas: {{ title }}</h1>
+    <h1 class="text-2xl font-bold">Data: {{ title }}</h1>
   
     <h3 class="text-lg">Subject: {{ data.subject }}</h3>
  
@@ -66,7 +66,7 @@ flex-direction: row-reverse;margin-top: -500px;" >
       <form method="POST" action="{% url 'assignment_mark' id=qst_id a_id=state student_id=std class_id=class_id %}">
         {% csrf_token %}
         <input type="number" name="mark" required class="border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
-        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-md ml-2">Update Mark</button>
+        <button type="submit" class="bg-blue-500 text- px-4 py-2 rounded-md ml-2">Update Mark</button>
       </form>
     </div>
   </div>
