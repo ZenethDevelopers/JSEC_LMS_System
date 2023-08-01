@@ -544,6 +544,7 @@ NoCodeMaker = [
 chatbot = [
     path('chatbot_res', chatbot_res,name="chatbot_res"),
     path('student/chatbot_res', chatbot_res),
+    
     path('teacher/profile/chatbot_res', chatbot_res),
     path('teacher/chatbot_res', chatbot_res),
 ]
