@@ -23,7 +23,7 @@ def assignment_mark(request,id,a_id,class_id,student_id):
        new_assignment_mark = Assignment_mark(
             student_id=student_id,  # Set the student_id value
             Assignment_id=id,  # Set the Assignment_id value
-            mark=90  # Set the mark value
+            mark=mark  # Set the mark value
         )
     else:
        return render(request,'attandees/mark_already_updated.html')
@@ -62,7 +62,7 @@ def upload_assignment_list1(request,id,a_id,class_id):
 def staff_upload_assignment_create(request,qst_id,state,class_id,std):
     print("std",std)
     try:
-        file = Upload_Assignment.objects.filter(update_by=std)  # Add appropriate filter conditions if needed
+        file = Upload_Assignment.objects.filter(update_by=std,Assignment_id=qst_id)  # Add appropriate filter conditions if needed
     except Upload_Assignment.DoesNotExist:
         file = None
         
@@ -84,7 +84,7 @@ def staff_upload_assignment_create(request,qst_id,state,class_id,std):
 def upload_assignment_create(request,qst_id):
     obj = Assignment.objects.get(id=qst_id)
     try:
-        file = Upload_Assignment.objects.filter(update_by=request.user.id)  # Add appropriate filter conditions if needed
+        file = Upload_Assignment.objects.filter(update_by=request.user.id,Assignment_id=qst_id)  # Add appropriate filter conditions if needed
     except Upload_Assignment.DoesNotExist:
         file = None
     try:
@@ -98,6 +98,7 @@ def upload_assignment_create(request,qst_id):
         upload_assignment.save()
         return redirect('upload_assignment_create',qst_id=qst_id)
     return render(request, 'assignment/upload_assignment_create.html',student_detials(request,"upload Assignment",{'data':obj,"file":file,"qst_id":qst_id,"mark":mark}))
+
 # >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 def upload_assignment_edit(request, pk):
     upload_assignment = get_object_or_404(Upload_Assignment, pk=pk)
