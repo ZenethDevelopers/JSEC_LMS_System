@@ -2490,11 +2490,13 @@
                                         class="btn btn-outline-primary btn-sm mb-0">View Class</button>
                                     <div class="avatar-group mt-2">
                                         {% for k in j.1 %}
+                                        {% if forloop.counter < 5 %}
                                         <a 
                                             class="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip"
                                             data-bs-placement="bottom" title="{{ k.get_name }}">
                                             <img alt="{{ k.get_name }}" src="{{ k.profile_pic.url }}" style="height: 29px; width:29px;">
                                         </a>
+                                        {% endif %}
                                         {% endfor %}
                                     </div>
                                 </div>
