@@ -49,8 +49,8 @@
                                             style="width: 25%;"
                                             class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 shadow-lg shadow-purple-500/50 dark:shadow-lg dark:shadow-purple-800/80 font-medium rounded-lg text-sm py-2.5 text-center mr-2 mb-2"><a
                                                 href="{{ note.file.url }}">View</a></button>
-                                        <button onclick="window.location.href='/class_ebook/{{ note.id }}/delete/'"
-                                            style="width: 25%;"
+                                        <button onclick="window.location.href='/class_ebook/{{ note.id }}/{{ note.subject }}/delete/'"
+                                            style="width: 25%; z-index: 99999;"
                                             class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-medium rounded-lg text-sm py-2.5 text-center mr-2 mb-2">Delete</button>
                                     </div>
                                 </ul>

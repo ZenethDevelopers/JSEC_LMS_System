@@ -272,7 +272,7 @@ classroom = [
     path("add_class_notes/<str:pk>", add_class_notes,name="add_class_notes"),
     path('class_ebook/book_list', class_book_list, name='class_book_list'),
     path('class_ebook/<int:pk>/edit/', class_ebook_edit, name='class_ebook_edit'),
-    path('class_ebook/<int:pk>/delete/',
+    path('class_ebook/<int:pk>/<str:code>/delete/',
          class_ebook_delete, name='class_ebook_delete'),
     path('filter_attendees', filter_attendees, name='filter_attendees'),
     path('leave_classroom/<str:class_id>/<int:owner>', leave_classroom, name='leave_classroom'),
