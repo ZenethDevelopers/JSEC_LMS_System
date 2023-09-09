@@ -1045,7 +1045,13 @@ conversation = {
 "thanks":["No mention","Welcome","It's my pleasure"],
 "thankyou":["No mention","Welcome","It's my pleasure"],
 "hi":["hello","hi","hey, What's up...!"],
-"hey":["hey, what's up","hey...!"]}
+"hey":["hey, what's up","hey...!","sure"],"hello":["Do you want any other help ?","Hmm","mm"],
+"Mmm":["Please Don't use irritating words :("],
+"mm":["Please Don't use irritating words :("],
+"Haan":["Please Don't use irritating words :("],
+"haan":["Please Don't use irritating words :("],
+"MM":["Please Don't use irritating words :("],
+}
 
 # Define synonyms for common question words
 synonyms = {"what": ["what", "which", "where", "when", "how","who"],

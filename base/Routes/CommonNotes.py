@@ -10,7 +10,7 @@ def note_by_class(request, class_id):
     for i in books:
         course.append(i.course)
     for j in list(set(course)):
-        collections.append(EbookForClass.objects.filter(course=j))
+        collections.append(EbookForClass.objects.filter(course=j,Class_id=class_id))
     return render(request, 'commonNotes/student_class_note_list.html', student_detials(request, 'Common Notes', {'note_lis': collections}))
 
 
@@ -21,7 +21,7 @@ def note_by_class_staff(request, class_id):
     for i in books:
         course.append(i.course)
     for j in list(set(course)):
-        collections.append(EbookForClass.objects.filter(course=j))
+        collections.append(EbookForClass.objects.filter(course=j,Class_id=class_id))
     return render(request, 'commonNotes/staff_class_note_list.html', staff_detials(request, 'Common Notes', {'note_lis': collections}))
 
 

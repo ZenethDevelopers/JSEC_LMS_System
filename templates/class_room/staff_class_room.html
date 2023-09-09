@@ -2845,9 +2845,9 @@
                 <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">No.of Peoples
                     :</strong>
                   &nbsp; {{ people|length }}</li>
-                <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Group created on
+                <!-- <li class="list-group-item border-0 ps-0 text-sm"><strong class="text-dark">Group created on
                     :</strong>
-                  &nbsp; {{ detail.date }}</li>
+                  &nbsp; {{ detail.date }}</li> -->
 
                 <li class="list-group-item border-0 ps-0 pb-0">
                   <strong class="text-dark text-sm">Social:</strong> &nbsp;
@@ -2964,7 +2964,7 @@ View
               </td>
               <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                  <a href="{% url 'upload_assignment_list1' id=i.id a_id=l class_id=detail.subject_code %}">View</a> 
+                  <a href="{% url 'upload_assignment_list1' id=i.id a_id=l class_id=detail.subject_code|urlencode %}">View</a> 
                 </button>
                 {% if role != 'admin' %}
                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">

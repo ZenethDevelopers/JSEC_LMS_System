@@ -272,7 +272,7 @@ classroom = [
     path("add_class_notes/<str:pk>", add_class_notes,name="add_class_notes"),
     path('class_ebook/book_list', class_book_list, name='class_book_list'),
     path('class_ebook/<int:pk>/edit/', class_ebook_edit, name='class_ebook_edit'),
-    path('class_ebook/<int:pk>/delete/',
+    path('class_ebook/<int:pk>/<str:code>/delete/',
          class_ebook_delete, name='class_ebook_delete'),
     path('filter_attendees', filter_attendees, name='filter_attendees'),
     path('leave_classroom/<str:class_id>/<int:owner>', leave_classroom, name='leave_classroom'),
@@ -544,6 +544,7 @@ NoCodeMaker = [
 chatbot = [
     path('chatbot_res', chatbot_res,name="chatbot_res"),
     path('student/chatbot_res', chatbot_res),
+    
     path('teacher/profile/chatbot_res', chatbot_res),
     path('teacher/chatbot_res', chatbot_res),
 ]
@@ -598,11 +599,11 @@ assignments_ = [
 
 upload_assignments = [
     path('upload_assignment/<int:id>', staff_upload_assignment_create, name='upload_assignment_list'),
-    path(r'^edit_assignment_mark/(?P<id>\d+)/(?P<a_id>True|False)/(?P<class_id>\w+)/(?P<student_id>\d+)/$', edit_assignment_mark, name='edit_assignment_mark'),
-    re_path(r'^upload_assignment/(?P<id>\d+)/(?P<a_id>True|False)/(?P<class_id>\w+)/$', upload_assignment_list1, name='upload_assignment_list1'),
-    re_path(r'^assignment_mark/(?P<id>\d+)/(?P<a_id>True|False)/(?P<class_id>\w+)/(?P<student_id>\d+)/$', assignment_mark, name='assignment_mark'),
+    path(r'^edit_assignment_mark/(?P<id>\d+)/(?P<a_id>True|False)/(?P<class_id>[\w-]+)/(?P<student_id>\d+)/$', edit_assignment_mark, name='edit_assignment_mark'),
+    re_path(r'^upload_assignment/(?P<id>\d+)/(?P<a_id>True|False)/(?P<class_id>[\w-]+)/$', upload_assignment_list1, name='upload_assignment_list1'),
+    re_path(r'^assignment_mark/(?P<id>\d+)/(?P<a_id>True|False)/(?P<class_id>[\w-]+)/(?P<student_id>\d+)/$', assignment_mark, name='assignment_mark'),
     path('upload_assignment/create/<int:qst_id>', upload_assignment_create, name='upload_assignment_create'),
-    re_path(r'^staff_upload_assignment_create/create/(?P<qst_id>\d+)/(?P<state>True|False)/(?P<class_id>\w+)/(?P<std>\d+)$', staff_upload_assignment_create, name='staff_upload_assignment_create'),
+    re_path(r'^staff_upload_assignment_create/create/(?P<qst_id>\d+)/(?P<state>True|False)/(?P<class_id>[\w-]+)/(?P<std>\d+)$', staff_upload_assignment_create, name='staff_upload_assignment_create'),
     path('upload_assignment/edit/<int:pk>', upload_assignment_edit, name='upload_assignment_edit'),
     path('upload_assignment/delete/<int:pk>/<int:qst_id>', upload_assignment_delete, name='upload_assignment_delete'),
 ]

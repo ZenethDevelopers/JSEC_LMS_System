@@ -46,12 +46,9 @@ def is_student(user):
 
 def leave_classroom(request,class_id,owner):
     if owner == 1:
-        Assignment.objects.filter(class_id=class_id).delete()
-        YouTubeLink.objects.filter(class_id=class_id).delete()
-        Daily_test_mark.objects.filter(class_id=class_id).delete()
-        Sec_Daily_test_mark.objects.filter(class_id=class_id).delete()
-        Internal_test_mark.objects.filter(class_id=class_id).delete()
         ClassRooms.objects.get(subject_code=class_id).delete()
+        a = class_enrolled.objects.get(user_id=request.user.id,subject_code=class_id)
+        a.delete()
     else:
         a = class_enrolled.objects.get(user_id=request.user.id,subject_code=class_id)
         a.delete()
@@ -337,12 +334,23 @@ def home_classroom(request):
         get_role = Users.objects.get(user_name=obj.username)
         accountapproval = TMODEL.Teacher.objects.all().filter(
             user_id=request.user.id, status=True)
-        
+        from django.db.models import Q
         if accountapproval:
             print('department',teacher_data.department)
-            
+            classes_ = []
+
             classrooms = ClassRooms.objects.filter(department=teacher_data.department)
-            
+            classes_enrolled = class_enrolled.objects.filter(user_id=request.user.id)
+
+            # Create a Q object to filter based on subject codes from classes_enrolled
+            subject_code_filter = Q()
+            for enrolled_class in classes_enrolled:
+                print("enrolled_class : ",enrolled_class.subject_code)
+                subject_code_filter |= Q(subject_code=enrolled_class.subject_code)
+
+            # Combine the classrooms queryset and filtered subject codes using the | operator
+            classrooms = classrooms | ClassRooms.objects.filter(subject_code_filter)
+            print("class rooms : ___________ : ",classrooms)
             all_classroom = ClassRooms.objects.all()
             
             print(get_role.role, type(get_role.role))
@@ -796,7 +804,7 @@ def add_class_notes(request, pk):
             ebook.Class_id = pk
             ebook.cover_image = choice(get_image_url(str(ebook.title)+" cover image"))
             ebook.save()
-            return redirect('course_list')
+            return redirect('class_room')
     else:
         form = EbookClassForm()
     return render(request, 'class_room/notes/add_notes.html', staff_detials(request,'Add Notes',{'form': form, 'class_id': pk}))
@@ -814,10 +822,10 @@ def class_ebook_edit(request, pk):
     return render(request, 'class_room/notes/ebook_edit.html', {'form': form})
 
 
-def class_ebook_delete(request, pk):
+def class_ebook_delete(request, pk,code):
     ebook = get_object_or_404(EbookForClass, pk=pk)
     ebook.delete()
-    return redirect('course_list')
+    return redirect('note_by_class_staff',class_id=code)
 
 
 def class_book_list(request):
